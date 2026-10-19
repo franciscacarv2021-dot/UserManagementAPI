@@ -49,6 +49,8 @@ app.UseWhen(
     branch => branch.UseMiddleware<TokenAuthenticationMiddleware>(expectedApiKey));
 app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
+app.MapGet("/", () => "Welcome to User Management App");
+
 var users = new ConcurrentDictionary<Guid, User>();
 var userEndpoints = app.MapGroup("/api/users").WithTags("Users");
 
